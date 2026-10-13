@@ -1,15 +1,8 @@
 import Guitar from "./Guitar";
 import { useMemo } from "react";
-//imports
+// Importa tus tipos o interfaces si los tienes definidos aparte
 
-
-export default function Header({ cart,total,increaseQuantity, decreaseQuantity, removeFromCart, emptyCart,isEmpty }:CartProps) 
-{
-
-  //toda la logica de la aplicacion va aqui
-  //useMemo guarda en cache
-
-  //en return toda estructura
+export default function Header({ cart, total, increaseQuantity, decreaseQuantity, removeFromCart, emptyCart, isEmpty }: CartProps) {
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -18,7 +11,7 @@ export default function Header({ cart,total,increaseQuantity, decreaseQuantity, 
             <a href="index.html">
               <img
                 className="img-fluid"
-                src="./public/img/logo.svg"
+                src="/img/logo.svg"
                 alt="imagen logo"
               />
             </a>
@@ -28,15 +21,15 @@ export default function Header({ cart,total,increaseQuantity, decreaseQuantity, 
             <div className="carrito">
               <img
                 className="img-fluid"
-                src="./public/img/carrito.png"
+                src="/img/carrito.png"
                 alt="imagen carrito"
               />
+
               <div id="carrito" className="bg-white p-3">
-                <p className="text-center">
-                  El carrito esta vacio{" "}
-                  {isEmpty ? (
-                    <p>sin guitarras</p>
-                  ) : (
+                {isEmpty ? (
+                  <p className="text-center my-0">El carrito está vacío</p>
+                ) : (
+                  <>
                     <table className="w-100 table">
                       <thead>
                         <tr>
@@ -47,49 +40,60 @@ export default function Header({ cart,total,increaseQuantity, decreaseQuantity, 
                           <th></th>
                         </tr>
                       </thead>
-                    <tbody>
+                      <tbody>
                         {cart.map((guitar) => (
-                            
                           <tr key={guitar.id}>
                             <td>
                               <img
                                 className="img-fluid"
-                                src={`./public/img/${guitar.image}.jpg`}
+                                src={`/img/${guitar.image}.jpg`}
                                 alt={`imagen ${guitar.name}`}
                               />
                             </td>
                             <td>{guitar.name}</td>
                             <td className="fw-bold">${guitar.price}</td>
                             <td className="flex align-items-start gap-4">
-                              <button type="button" className="btn btn-dark"  onClick={() => decreaseQuantity(guitar.id)}
->
+                              <button
+                                type="button"
+                                className="btn btn-dark"
+                                onClick={() => decreaseQuantity(guitar.id)}
+                              >
                                 -
                               </button>
                               {guitar.quantity}
-                              <button type="button" className="btn btn-dark" onClick={() => increaseQuantity(guitar.id)} >
+                              <button
+                                type="button"
+                                className="btn btn-dark"
+                                onClick={() => increaseQuantity(guitar.id)}
+                              >
                                 +
-                                
                               </button>
                             </td>
                             <td>
-                              <button className="btn btn-danger" type="button" onClick={() => removeFromCart(guitar.id)}>
+                              <button
+                                className="btn btn-danger"
+                                type="button"
+                                onClick={() => removeFromCart(guitar.id)}
+                              >
                                 X
                               </button>
                             </td>
                           </tr>
-
                         ))}
                       </tbody>
                     </table>
-                  )}
-                </p>
 
-                <p className="text-end">
-                  Total pagar: <span className="fw-bold">${total} </span>
-                </p>
-                <button className="btn btn-dark w-100 mt-3 p-2" onClick={emptyCart}>
-                  Vaciar Carrito
-                </button>
+                    <p className="text-end">
+                      Total pagar: <span className="fw-bold">${total}</span>
+                    </p>
+                    <button
+                      className="btn btn-dark w-100 mt-3 p-2"
+                      onClick={emptyCart}
+                    >
+                      Vaciar Carrito
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </nav>
@@ -97,6 +101,4 @@ export default function Header({ cart,total,increaseQuantity, decreaseQuantity, 
       </div>
     </header>
   );
-
-  // mandar la logica de header  al hook 
 }

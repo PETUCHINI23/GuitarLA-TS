@@ -1,0 +1,30 @@
+header {
+  background-image: linear-gradient(to right, rgb(0 0 0 / .7), rgb(0 0 0 / .7)), url('/img/header.jpg');
+  background-size: cover;
+  background-position: center center;
+  padding: 5rem 0;
+}
+
+.header-logo, header img {
+  max-width: 18rem;
+}
+
+.carrito {
+  position: relative;
+}
+
+.carrito #carrito {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 1;
+  width: 30rem;
+}
+
+.carrito:hover #carrito {
+  display: block;
+}
+.carrito img {
+  max-width: 3rem;
+}
